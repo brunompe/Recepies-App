@@ -1,9 +1,12 @@
 import React from 'react';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function ReceitasFeitas() {
   return (
     <div>
-      <h1>Receitas Feitas</h1>
+      <Header pageName="Receitas Feitas" />
+      <Footer />
     </div>
   );
 }

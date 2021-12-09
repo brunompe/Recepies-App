@@ -68,9 +68,21 @@
 }
 
 footer {
-  position: fixed;
-  bottom: 0px;
+  bottom: 0;
   display: flex;
   justify-content: space-around;
+  position: fixed;
   width: 100%;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.searchDiv {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
 }
