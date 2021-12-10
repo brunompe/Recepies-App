@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import BarraBuscar from './BarraBuscar';
 
-export default function Header({ pageName, haveSearch }) {
+export default function Header({ pageName, haveSearch, webPage, history }) {
   const [toggleInput, setToggleInput] = useState(false);
   return (
     <header>
@@ -27,7 +28,9 @@ export default function Header({ pageName, haveSearch }) {
           </button>
         )}
         {toggleInput && (
-          <input type="text" data-testid="search-input" />
+          <div>
+            <BarraBuscar webPage={ webPage } history={ history } />
+          </div>
         )}
       </div>
 
@@ -38,4 +41,8 @@ export default function Header({ pageName, haveSearch }) {
 Header.propTypes = {
   haveSearch: PropTypes.string.isRequired,
   pageName: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+  webPage: PropTypes.string.isRequired,
 };
