@@ -5,11 +5,14 @@ import RecipeContext from './RecipeContext';
 export default function Provider({ children }) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [fetchData, setFetchData] = useState({ meals: ['x', 'y'], drinks: ['x', 'y'] });
   const contextValue = {
     login,
     setLogin,
     password,
     setPassword,
+    fetchData,
+    setFetchData,
   };
 
   return (
