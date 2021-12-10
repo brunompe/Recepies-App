@@ -1,10 +1,11 @@
 import React from 'react';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function Comidas() {
   return (
     <div>
-      <h1>Comidas</h1>
+      <Header pageName="Comidas" haveSearch />
       <Footer />
     </div>
   );

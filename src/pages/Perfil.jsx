@@ -1,8 +1,12 @@
 import React from 'react';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function Perfil() {
   return (
-    <Footer />
+    <div>
+      <Header pageName="Perfil" />
+      <Footer />
+    </div>
   );
 }

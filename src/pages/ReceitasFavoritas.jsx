@@ -1,9 +1,10 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function ReceitasFavoritas() {
   return (
     <div>
-      <h1>Receitas Favoritas</h1>
+      <Header pageName="Receitas Favoritas" />
     </div>
   );
 }
