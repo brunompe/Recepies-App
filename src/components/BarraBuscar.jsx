@@ -8,10 +8,15 @@ export default function BarraBuscar({ webPage, history }) {
   const [searchBar, setSearchBar] = useState('');
 
   const fetchRecipes = async (URL) => {
-    // const recipes = await fetch(URL).then((response) => response.json());
     const recipes = await fetch(URL);
     const recipesJson = await recipes.json();
-    await setFetchData(recipesJson);
+
+    if ((recipesJson.meals === null) || (recipesJson.drinks === null)) {
+      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      await setFetchData(fetchData);
+    } else {
+      await setFetchData(recipesJson);
+    }
   };
 
   useEffect(() => {
@@ -46,11 +51,12 @@ export default function BarraBuscar({ webPage, history }) {
 
   return (
     <div>
-
       <input
         type="text"
         data-testid="search-input"
-        onChange={ ({ target }) => { setSearchBar(target.value); } }
+        onChange={ ({ target }) => {
+          setSearchBar(target.value);
+        } }
       />
 
       <label htmlFor="ingrediente">
@@ -61,7 +67,9 @@ export default function BarraBuscar({ webPage, history }) {
           type="radio"
           value="ingrediente"
           name="radioHeader"
-          onClick={ ({ target }) => { setRadioValue(target.value); } }
+          onClick={ ({ target }) => {
+            setRadioValue(target.value);
+          } }
         />
       </label>
 
@@ -73,7 +81,9 @@ export default function BarraBuscar({ webPage, history }) {
           data-testid="name-search-radio"
           type="radio"
           name="radioHeader"
-          onClick={ ({ target }) => { setRadioValue(target.value); } }
+          onClick={ ({ target }) => {
+            setRadioValue(target.value);
+          } }
         />
       </label>
 
@@ -85,7 +95,9 @@ export default function BarraBuscar({ webPage, history }) {
           value="primeiraLetra"
           type="radio"
           name="radioHeader"
-          onClick={ ({ target }) => { setRadioValue(target.value); } }
+          onClick={ ({ target }) => {
+            setRadioValue(target.value);
+          } }
         />
       </label>
 

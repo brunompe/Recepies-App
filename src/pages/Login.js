@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 import RecipeContext from '../context/RecipeContext';
 
 export default function Login() {
-  const { login, setLogin, password, setPassword } = useContext(RecipeContext);
+  const {
+    login,
+    setLogin,
+    password,
+    setPassword,
+  } = useContext(RecipeContext);
   const [isDisabled, setIsDisabled] = useState(true);
 
   const handleChangeLogin = ({ target }) => {
@@ -33,6 +38,7 @@ export default function Login() {
   useEffect(() => {
     verifyData();
   }, [login, password]);
+
   return (
     <div>
       <h1>Login</h1>
