@@ -7,6 +7,7 @@ export default function Provider({ children }) {
   const [password, setPassword] = useState('1234567');
   const [fetchData, setFetchData] = useState({ meals: ['x', 'y'], drinks: ['x', 'y'] });
   const [categories, setCategories] = useState([]);
+  const [initialValue, setInitialValue] = useState();
   const contextValue = {
     login,
     setLogin,
@@ -16,6 +17,7 @@ export default function Provider({ children }) {
     setFetchData,
     categories,
     setCategories,
+    initialValue,
   };
 
   const fetchInitialData = async () => {
@@ -25,6 +27,7 @@ export default function Provider({ children }) {
     const drinkJson = await drinkData.json();
     const allData = { meals: foodJson.meals, drinks: drinkJson.drinks };
     await setFetchData(allData);
+    setInitialValue(allData);
   };
 
   // Função para gerar a lista de categorias de "BarraCategorias"

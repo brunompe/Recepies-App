@@ -25,6 +25,8 @@ export default function Bebibas({ history }) {
       <BarraCategorias webPage="thecocktaildb" />
       {results.length > 2 && results.map((result, index) => (
         <DisplayCard
+          webPage="bebidas"
+          id={ result.idDrink }
           key={ result.strDrink }
           nome={ result.strDrink }
           URL={ result.strDrinkThumb }
