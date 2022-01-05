@@ -23,11 +23,13 @@ export default function Comidas({ history }) {
     <div>
       <Header pageName="Comidas" haveSearch webPage="themealdb" history={ history } />
       <BarraCategorias webPage="themealdb" />
-      {results.length > 2 && results.map((result, index) => (
+      {results.map((result, index) => (
         <DisplayCard
+          webPage="comidas"
           key={ result.strMeal }
           nome={ result.strMeal }
           URL={ result.strMealThumb }
+          id={ result.idMeal }
           index={ index }
         />))}
       <Footer />

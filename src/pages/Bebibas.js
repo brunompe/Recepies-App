@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipeContext from '../context/RecipeContext';
 import DisplayCard from '../components/DisplayCard';
+import BarraCategorias from '../components/BarraCategorias';
 
 export default function Bebibas({ history }) {
   const { fetchData } = useContext(RecipeContext);
@@ -21,9 +22,11 @@ export default function Bebibas({ history }) {
   return (
     <div>
       <Header pageName="Bebidas" haveSearch webPage="thecocktaildb" history={ history } />
-      {results.legth === 2}
+      <BarraCategorias webPage="thecocktaildb" />
       {results.length > 2 && results.map((result, index) => (
         <DisplayCard
+          webPage="bebidas"
+          id={ result.idDrink }
           key={ result.strDrink }
           nome={ result.strDrink }
           URL={ result.strDrinkThumb }
