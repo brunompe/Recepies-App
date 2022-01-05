@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import RecipeContext from './RecipeContext';
 
 export default function Provider({ children }) {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
+  const [login, setLogin] = useState('wouifhwruh@gmail.com');
+  const [password, setPassword] = useState('1234567');
   const [fetchData, setFetchData] = useState({ meals: ['x', 'y'], drinks: ['x', 'y'] });
+  const [categories, setCategories] = useState([]);
   const contextValue = {
     login,
     setLogin,
@@ -13,6 +14,8 @@ export default function Provider({ children }) {
     setPassword,
     fetchData,
     setFetchData,
+    categories,
+    setCategories,
   };
 
   const fetchInitialData = async () => {
@@ -24,8 +27,19 @@ export default function Provider({ children }) {
     await setFetchData(allData);
   };
 
+  // Função para gerar a lista de categorias de "BarraCategorias"
+  const fetchCategories = async () => {
+    const foodCategories = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+    const foodCatJson = await foodCategories.json();
+    const drinkCategories = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+    const drinkCatJson = await drinkCategories.json();
+    const allCategories = { meals: foodCatJson.meals, drinks: drinkCatJson.drinks };
+    setCategories(allCategories);
+  };
+
   useEffect(() => {
     fetchInitialData();
+    fetchCategories();
   }, []);
 
   return (

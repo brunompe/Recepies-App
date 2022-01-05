@@ -1,19 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
 
 export default function BarraCategorias({ webPage }) {
-  const { fetchData } = useContext(RecipeContext);
+  const { categories } = useContext(RecipeContext);
   const [firstFive, setFirstFive] = useState(['carregando...']);
   const arr = [];
+  const FOUR = 4;
+  const ZERO = 0;
+
   const renderButtons = () => {
-    if (webPage === 'themealdb' && fetchData.meals[0].strCategory !== undefined) {
-      for (let index = 0; index <= 4; index += 1) {
-        const categoria = fetchData.meals[index].strCategory;
+    if (webPage === 'themealdb') {
+      for (let index = ZERO; index <= FOUR; index += 1) {
+        const categoria = categories.meals[index].strCategory;
         arr.push(categoria);
       }
-    } else if (webPage === 'thecocktaildb' && fetchData.drink[0].strCategory !== undefined) {
-      for (let index = 0; index <= 4; index += 1) {
-        const categoria = fetchData.drink[index].strCategory;
+    } if (webPage === 'thecocktaildb') {
+      for (let index = ZERO; index <= FOUR; index += 1) {
+        const categoria = categories.drinks[index].strCategory;
         arr.push(categoria);
       }
     }
@@ -21,18 +25,26 @@ export default function BarraCategorias({ webPage }) {
   };
 
   useEffect(() => {
-    if (firstFive.length < 4) {
+    if (firstFive.length <= FOUR && categories.length !== 0) {
       renderButtons();
     }
-  }, [firstFive]);
+  }, [categories]);
 
   return (
     <div>
       {firstFive.map((category) => (
-        <button key={ category } data-testid={ `${category}-category-filter` }>
+        <button
+          type="button"
+          key={ category }
+          data-testid={ `${category}-category-filter` }
+        >
           {category}
         </button>
       ))}
     </div>
   );
 }
+
+BarraCategorias.propTypes = {
+  webPage: PropTypes.string.isRequired,
+};
