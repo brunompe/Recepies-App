@@ -55,6 +55,14 @@ export default function ComidasDetalhes({ match: { params } }) {
     fetchDetalhes();
   }, []);
 
+  const classChange = ({ target }) => {
+    if (target.checked === true) {
+      target.parentNode.className = 'recepiesRisk';
+    } else {
+      target.parentNode.className = '';
+    }
+  };
+
   return (
     <div>
       {render === true && (
@@ -68,23 +76,28 @@ export default function ComidasDetalhes({ match: { params } }) {
 
           <h3 data-testid="recipe-category">{mealDetail.meals[0].strCategory}</h3>
 
-          <ul>
-            {ingredientList.map((ingrediente, index) => (
-              <li
-                data-testid={ `${index}-ingredient-step` }
+          {ingredientList.map((ingrediente, index) => (
+            <label
+              data-testid={ `${index}-ingredient-step` }
+              key={ index }
+              htmlFor={ index }
+            >
+              <input
+                id={ index }
+                type="checkbox"
                 key={ ingrediente }
-              >
-                { ingrediente }
-                {' '}
-                -
-                {' '}
-                { quantityList[index] }
-                {' '}
+                onClick={ classChange }
 
-              </li>
-            ))}
+              />
+              { ingrediente }
+              {' '}
+              -
+              {' '}
+              { quantityList[index] }
+              {' '}
+            </label>
+          ))}
 
-          </ul>
           <p
             data-testid="instructions"
           >

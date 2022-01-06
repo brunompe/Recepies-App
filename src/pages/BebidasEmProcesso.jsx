@@ -24,6 +24,14 @@ export default function BebidasDetalhes({ match: { params } }) {
     setIngredientList(final);
   };
 
+  const classChange = ({ target }) => {
+    if (target.checked === true) {
+      target.parentNode.className = 'recepiesRisk';
+    } else {
+      target.parentNode.className = '';
+    }
+  };
+
   const renderQuantity = () => {
     const firstIng = 32;
     const lastIng = 46;
@@ -58,23 +66,28 @@ export default function BebidasDetalhes({ match: { params } }) {
           <h1 data-testid="recipe-title">{drinkDetail.drinks[0].strDrink}</h1>
           <h3 data-testid="recipe-category">{ drinkDetail.drinks[0].strAlcoholic }</h3>
 
-          <ul>
-            {ingredientList.map((ingrediente, index) => (
-              <li
-                data-testid={ `${index}-ingredient-step` }
+          {ingredientList.map((ingrediente, index) => (
+            <label
+              data-testid={ `${index}-ingredient-step` }
+              key={ index }
+              htmlFor={ index }
+            >
+              <input
+                id={ index }
+                type="checkbox"
                 key={ ingrediente }
-              >
-                { ingrediente }
-                {' '}
-                -
-                {' '}
-                { quantityList[index] }
-                {' '}
+                onClick={ classChange }
 
-              </li>
-            ))}
+              />
+              { ingrediente }
+              {' '}
+              -
+              {' '}
+              { quantityList[index] }
+              {' '}
+            </label>
+          ))}
 
-          </ul>
           <p
             data-testid="instructions"
           >

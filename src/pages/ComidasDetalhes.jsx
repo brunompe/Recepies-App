@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import DisplayCard from '../components/DisplayCard';
 
 export default function ComidasDetalhes({ match: { params } }) {
@@ -151,13 +152,15 @@ export default function ComidasDetalhes({ match: { params } }) {
               </div>
             ))}
           </div>
-          <button
-            className="recipeButton"
-            type="button"
-            data-testid="start-recipe-btn"
-          >
-            Iniciar Receita
-          </button>
+          <Link to={ `/comidas/${id}/in-progress` }>
+            <button
+              className="recipeButton"
+              type="button"
+              data-testid="start-recipe-btn"
+            >
+              Iniciar Receita
+            </button>
+          </Link>
         </div>
       )}
 

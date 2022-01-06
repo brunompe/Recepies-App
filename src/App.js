@@ -17,8 +17,8 @@ import ComidasLocal from './pages/ComidasLocal';
 import Perfil from './pages/Perfil';
 import ComidasDetalhes from './pages/ComidasDetalhes';
 import BebidasDetalhes from './pages/BebidasDetalhes';
-import ComidasEmProgresso from './pages/ComidasEmProcesso';
-import BebidasEmProgresso from './pages/BebidasEmProcesso';
+import ComidasEmProcesso from './pages/ComidasEmProcesso';
+import BebidasEmProcesso from './pages/BebidasEmProcesso';
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function App() {
           exact
           path="/comidas/:id/in-progress"
           render={ (props) => (
-            <ComidasEmProgresso { ...props } />) }
+            <ComidasEmProcesso { ...props } />) }
         />
         <Route exact path="/bebidas" component={ Bebidas } />
         <Route
@@ -49,7 +49,7 @@ function App() {
           exact
           path="/bebidas/:id/in-progress"
           render={ (props) => (
-            <BebidasEmProgresso { ...props } />) }
+            <BebidasEmProcesso { ...props } />) }
         />
         <Route exact path="/explorar" component={ Explorar } />
         <Route exact path="/explorar/comidas" component={ ExplorarComidas } />
