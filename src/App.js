@@ -15,6 +15,10 @@ import BebidasIngredientes from './pages/BebidasIngredientes';
 import BebidasLocal from './pages/BebidasLocal';
 import ComidasLocal from './pages/ComidasLocal';
 import Perfil from './pages/Perfil';
+import ComidasDetalhes from './pages/ComidasDetalhes';
+import BebidasDetalhes from './pages/BebidasDetalhes';
+import ComidasEmProcesso from './pages/ComidasEmProcesso';
+import BebidasEmProcesso from './pages/BebidasEmProcesso';
 
 function App() {
   return (
@@ -22,7 +26,31 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route exact path="/comidas" component={ Comidas } />
+        <Route
+          exact
+          path="/comidas/:id"
+          render={ (props) => (
+            <ComidasDetalhes { ...props } />) }
+        />
+        <Route
+          exact
+          path="/comidas/:id/in-progress"
+          render={ (props) => (
+            <ComidasEmProcesso { ...props } />) }
+        />
         <Route exact path="/bebidas" component={ Bebidas } />
+        <Route
+          exact
+          path="/bebidas/:id"
+          render={ (props) => (
+            <BebidasDetalhes { ...props } />) }
+        />
+        <Route
+          exact
+          path="/bebidas/:id/in-progress"
+          render={ (props) => (
+            <BebidasEmProcesso { ...props } />) }
+        />
         <Route exact path="/explorar" component={ Explorar } />
         <Route exact path="/explorar/comidas" component={ ExplorarComidas } />
         <Route

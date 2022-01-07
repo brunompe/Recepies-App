@@ -15,6 +15,20 @@
   max-height: 80vh;
 }
 
+.oculto {
+  background-color: green;
+  display: none;
+}
+
+.recipeButton {
+  bottom: 0;
+  position: fixed;
+}
+
+.recepiesRisk {
+  text-decoration: line-through;
+}
+
 /*
 #iceLeft {
   animation: clink .8s infinite ease;

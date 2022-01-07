@@ -31,6 +31,7 @@ export default function Comidas({ history }) {
           URL={ result.strMealThumb }
           id={ result.idMeal }
           index={ index }
+          dataTest={ `${index}-card-name` }
         />))}
       <Footer />
     </div>

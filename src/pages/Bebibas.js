@@ -31,6 +31,7 @@ export default function Bebibas({ history }) {
           nome={ result.strDrink }
           URL={ result.strDrinkThumb }
           index={ index }
+          dataTest={ `${index}-card-name` }
         />))}
       <Footer />
     </div>
