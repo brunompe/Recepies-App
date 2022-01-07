@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import DisplayCard from '../components/DisplayCard';
+import ShareButton from '../components/ShareButton';
+import FavButton from '../components/FavButton';
 
 export default function ComidasDetalhes({ match: { params } }) {
   const { id } = params;
@@ -100,19 +102,18 @@ export default function ComidasDetalhes({ match: { params } }) {
             {mealDetail.meals[0].strInstructions}
           </p>
 
-          <button
-            type="button"
-            data-testid="share-btn"
-          >
-            Compartilhar
-          </button>
+          <ShareButton foodType="meal" pageId={ id } />
 
-          <button
-            type="button"
-            data-testid="favorite-btn"
-          >
-            Favoritar
-          </button>
+          <FavButton
+            id={ mealDetail.meals[0].idMeal }
+            type="comida"
+            area={ mealDetail.meals[0].strArea }
+            category={ mealDetail.meals[0].strCategory }
+            alcoholicOrNot=""
+            name={ mealDetail.meals[0].strMeal }
+            image={ mealDetail.meals[0].strMealThumb }
+
+          />
 
           <iframe
             data-testid="video"

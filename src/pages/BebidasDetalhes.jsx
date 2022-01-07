@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import DisplayCard from '../components/DisplayCard';
+import ShareButton from '../components/ShareButton';
+import FavButton from '../components/FavButton';
 
 export default function BebidasDetalhes({ match: { params } }) {
   const { id } = params;
@@ -92,19 +94,17 @@ export default function BebidasDetalhes({ match: { params } }) {
             {drinkDetail.drinks[0].strInstructions}
           </p>
 
-          <button
-            type="button"
-            data-testid="share-btn"
-          >
-            Compartilhar
-          </button>
+          <ShareButton foodType="drink" pageId={ id } />
 
-          <button
-            type="button"
-            data-testid="favorite-btn"
-          >
-            Favoritar
-          </button>
+          <FavButton
+            id={ drinkDetail.drinks[0].idDrink }
+            area=""
+            type="bebida"
+            category={ drinkDetail.drinks[0].strCategory }
+            alcoholicOrNot={ drinkDetail.drinks[0].strAlcoholic }
+            name={ drinkDetail.drinks[0].strDrink }
+            image={ drinkDetail.drinks[0].strDrinkThumb }
+          />
 
           <div>
             <p>Recomendadas</p>

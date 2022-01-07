@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import ShareButton from '../components/ShareButton';
 
 export default function BebidasDetalhes({ match: { params } }) {
   const { id } = params;
@@ -94,12 +95,7 @@ export default function BebidasDetalhes({ match: { params } }) {
             {drinkDetail.drinks[0].strInstructions}
           </p>
 
-          <button
-            type="button"
-            data-testid="share-btn"
-          >
-            Compartilhar
-          </button>
+          <ShareButton foodType="drink" pageId={ id } />
 
           <button
             type="button"

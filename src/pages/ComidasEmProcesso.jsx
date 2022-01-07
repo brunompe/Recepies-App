@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import ShareButton from '../components/ShareButton';
 
-export default function ComidasDetalhes({ match: { params } }) {
+export default function ComidasDetalhes({ match: { params, url } }) {
   const { id } = params;
   const [mealDetail, setMealDetail] = useState('');
   const [render, setRender] = useState(false);
@@ -104,12 +105,7 @@ export default function ComidasDetalhes({ match: { params } }) {
             {mealDetail.meals[0].strInstructions}
           </p>
 
-          <button
-            type="button"
-            data-testid="share-btn"
-          >
-            Compartilhar
-          </button>
+          <ShareButton pageId={ id } foodType="meal" />
 
           <button
             type="button"
