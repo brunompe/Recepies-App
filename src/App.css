@@ -34,6 +34,10 @@
   padding-bottom: 10px;
 }
 
+.imgSize {
+  width: 200px;
+}
+
 /*
 #iceLeft {
   animation: clink .8s infinite ease;

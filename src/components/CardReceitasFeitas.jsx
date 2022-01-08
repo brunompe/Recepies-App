@@ -1,20 +1,40 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ShareButton from './ShareButton';
 
 export default function CardReceitasFeitas({
-  pageId, foodType, testId, index, category, name, data, tags, image, alcoholicOrNot, area
+  pageId, foodType, index, category, name, data, tags, image, alcoholicOrNot, area,
 }) {
   return (
     <div>
       {foodType === 'comida' ? (
         <div>
-
-          <img data-testid={ `${index}-horizontal-image` } src={ image } alt="Recipe" />
-          <h3 data-testid={ `${index}-horizontal-name` }>{name}</h3>
+          <Link to={ `/comidas/${pageId}` }>
+            <img
+              className="imgSize"
+              data-testid={ `${index}-horizontal-image` }
+              src={ image }
+              alt="Recipe"
+            />
+            <h3 data-testid={ `${index}-horizontal-name` }>{name}</h3>
+          </Link>
           <p data-testid={ `${index}-horizontal-top-text` }>{`${area} - ${category}`}</p>
           <p data-testid={ `${index}-horizontal-done-date` }>{ data }</p>
-          <button type="button" data-testid={ `${index}-${tags[0]}-horizontal-tag` }>{tags[0]}</button>
-          <button type="button" data-testid={ `${index}-${tags[1]}-horizontal-tag` }>{tags[1]}</button>
+          <button
+            type="button"
+            data-testid={ `${index}-${tags[0]}-horizontal-tag` }
+          >
+            {tags[0]}
+
+          </button>
+          <button
+            type="button"
+            data-testid={ `${index}-${tags[1]}-horizontal-tag` }
+          >
+            {tags[1]}
+
+          </button>
 
           <ShareButton
             pageId={ pageId }
@@ -24,8 +44,15 @@ export default function CardReceitasFeitas({
         </div>
       ) : (
         <div>
-          <img data-testid={ `${index}-horizontal-image` } src={ image } alt="Recipe" />
-          <h3 data-testid={ `${index}-horizontal-name` }>{name}</h3>
+          <Link to={ `/bebidas/${pageId}` }>
+            <img
+              className="imgSize"
+              data-testid={ `${index}-horizontal-image` }
+              src={ image }
+              alt="Recipe"
+            />
+            <h3 data-testid={ `${index}-horizontal-name` }>{name}</h3>
+          </Link>
           <p data-testid={ `${index}-horizontal-top-text` }>{alcoholicOrNot}</p>
           <p data-testid={ `${index}-horizontal-done-date` }>{data}</p>
 
@@ -40,3 +67,16 @@ export default function CardReceitasFeitas({
     </div>
   );
 }
+
+CardReceitasFeitas.propTypes = {
+  alcoholicOrNot: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  data: PropTypes.string.isRequired,
+  foodType: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  index: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  pageId: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+};

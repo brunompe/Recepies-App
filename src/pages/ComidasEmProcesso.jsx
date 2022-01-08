@@ -140,13 +140,6 @@ export default function ComidasDetalhes({ match: { params } }) {
           </p>
 
           <ShareButton pageId={ id } foodType="meal" testId="share-btn" />
-
-          {/* <button
-            type="button"
-            data-testid="favorite-btn"
-          >
-            Favoritar
-          </button> */}
           <FavButton
             id={ mealDetail.meals[0].idMeal }
             type="comida"
