@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import ShareButton from '../components/ShareButton';
+import FavButton from '../components/FavButton';
 
 export default function BebidasDetalhes({ match: { params } }) {
   const { id } = params;
   const [drinkDetail, setDrinkDetail] = useState('');
   const [render, setRender] = useState(false);
-  const [ingredientList, setIngredientList] = useState([]);
+  const [ingredientList, setIngredientList] = useState(['1']);
   const [quantityList, setQuantityList] = useState([]);
+  const [ingredientDone, setIngredientDone] = useState(0);
+  const [disable, setDisable] = useState(true);
 
   const fetchDetalhes = async () => {
     const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
@@ -27,8 +32,10 @@ export default function BebidasDetalhes({ match: { params } }) {
   const classChange = ({ target }) => {
     if (target.checked === true) {
       target.parentNode.className = 'recepiesRisk';
+      setIngredientDone(ingredientDone + 1);
     } else {
       target.parentNode.className = '';
+      setIngredientDone(ingredientDone - 1);
     }
   };
 
@@ -47,8 +54,13 @@ export default function BebidasDetalhes({ match: { params } }) {
     if (render === true) {
       renderIngredients();
       renderQuantity();
+      if (ingredientDone === ingredientList.length) {
+        setDisable(false);
+      } else {
+        setDisable(true);
+      }
     }
-  }, [render]);
+  }, [render, ingredientDone]);
 
   useEffect(() => {
     fetchDetalhes();
@@ -94,26 +106,33 @@ export default function BebidasDetalhes({ match: { params } }) {
             {drinkDetail.drinks[0].strInstructions}
           </p>
 
-          <button
-            type="button"
-            data-testid="share-btn"
-          >
-            Compartilhar
-          </button>
+          <ShareButton foodType="drink" pageId={ id } />
 
-          <button
+          {/* <button
             type="button"
             data-testid="favorite-btn"
           >
             Favoritar
-          </button>
-          <button
-            className="recipeButton"
-            type="button"
-            data-testid="finish-recipe-btn"
-          >
-            Finalizar Receita
-          </button>
+          </button> */}
+          <FavButton
+            id={ drinkDetail.drinks[0].idDrink }
+            area=""
+            type="bebida"
+            category={ drinkDetail.drinks[0].strCategory }
+            alcohol={ drinkDetail.drinks[0].strAlcoholic }
+            name={ drinkDetail.drinks[0].strDrink }
+            image={ drinkDetail.drinks[0].strDrinkThumb }
+          />
+          <Link to="/receitas-feitas">
+            <button
+              className="recipeButton"
+              type="button"
+              data-testid="finish-recipe-btn"
+              disabled={ disable }
+            >
+              Finalizar Receita
+            </button>
+          </Link>
         </div>
       )}
 
