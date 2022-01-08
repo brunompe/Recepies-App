@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
-export default function FavButton({ id, type, area, category, alcoholicOrNot, name, image }) {
+export default function FavButton({ id, type, area, category, alcohol, name, image }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [icon, setIcon] = useState(whiteHeartIcon);
   let verifyFav = false;
@@ -13,7 +13,7 @@ export default function FavButton({ id, type, area, category, alcoholicOrNot, na
       type,
       area,
       category,
-      alcoholicOrNot,
+      alcoholicOrNot: alcohol,
       name,
       image,
     };
@@ -64,6 +64,7 @@ export default function FavButton({ id, type, area, category, alcoholicOrNot, na
     <div>
 
       <button
+        className="favButton"
         type="button"
         data-testid="favorite-btn"
         src={ icon }

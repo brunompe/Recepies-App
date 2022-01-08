@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ShareButton from '../components/ShareButton';
+import FavButton from '../components/FavButton';
 
-export default function ComidasDetalhes({ match: { params, url } }) {
+export default function ComidasDetalhes({ match: { params } }) {
   const { id } = params;
   const [mealDetail, setMealDetail] = useState('');
   const [render, setRender] = useState(false);
-  const [ingredientList, setIngredientList] = useState([]);
+  const [ingredientList, setIngredientList] = useState(['1']);
   const [quantityList, setQuantityList] = useState([]);
+  const [ingredientDone, setIngredientDone] = useState(0);
+  const [disable, setDisable] = useState(true);
 
   const fetchDetalhes = async () => {
     const data = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
@@ -21,9 +25,7 @@ export default function ComidasDetalhes({ match: { params, url } }) {
     const firstIng = 9;
     const lastIng = 29;
     const list = Object.entries(mealDetail.meals[0]);
-    console.log(list);
     const onlyIngredients = list.slice(firstIng, lastIng);
-    console.log(onlyIngredients);
     const firstFilter = onlyIngredients.filter((curr) => curr[1] !== null);
     const test = firstFilter.filter((curr) => curr[1].length !== 0);
     const final = test.map((curr) => curr[1]);
@@ -34,14 +36,10 @@ export default function ComidasDetalhes({ match: { params, url } }) {
     const firstIng = 29;
     const lastIng = 49;
     const list = Object.entries(mealDetail.meals[0]);
-    console.log(list);
     const onlyQuantity = list.slice(firstIng, lastIng);
-    console.log(onlyQuantity);
     const firstFilter = onlyQuantity.filter((curr) => curr[1] !== null);
     const test = firstFilter.filter((curr) => curr[1].length !== 1);
-    console.log(test);
     const final = test.map((curr) => curr[1]);
-    console.log(final);
     setQuantityList(final);
   };
 
@@ -49,8 +47,13 @@ export default function ComidasDetalhes({ match: { params, url } }) {
     if (render === true) {
       renderIngredients();
       renderQuantity();
+      if (ingredientDone === ingredientList.length) {
+        setDisable(false);
+      } else {
+        setDisable(true);
+      }
     }
-  }, [render]);
+  }, [render, ingredientDone]);
 
   useEffect(() => {
     fetchDetalhes();
@@ -59,8 +62,10 @@ export default function ComidasDetalhes({ match: { params, url } }) {
   const classChange = ({ target }) => {
     if (target.checked === true) {
       target.parentNode.className = 'recepiesRisk';
+      setIngredientDone(ingredientDone + 1);
     } else {
       target.parentNode.className = '';
+      setIngredientDone(ingredientDone - 1);
     }
   };
 
@@ -107,20 +112,32 @@ export default function ComidasDetalhes({ match: { params, url } }) {
 
           <ShareButton pageId={ id } foodType="meal" />
 
-          <button
+          {/* <button
             type="button"
             data-testid="favorite-btn"
           >
             Favoritar
-          </button>
+          </button> */}
+          <FavButton
+            id={ mealDetail.meals[0].idMeal }
+            type="comida"
+            area={ mealDetail.meals[0].strArea }
+            category={ mealDetail.meals[0].strCategory }
+            alcohol=""
+            name={ mealDetail.meals[0].strMeal }
+            image={ mealDetail.meals[0].strMealThumb }
 
-          <button
-            className="recipeButton"
-            type="button"
-            data-testid="finish-recipe-btn"
-          >
-            Finalizar receita
-          </button>
+          />
+          <Link to="/receitas-feitas">
+            <button
+              className="recipeButton"
+              type="button"
+              data-testid="finish-recipe-btn"
+              disabled={ disable }
+            >
+              Finalizar receita
+            </button>
+          </Link>
         </div>
       )}
 

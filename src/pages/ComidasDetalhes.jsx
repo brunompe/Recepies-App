@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import DisplayCard from '../components/DisplayCard';
 import ShareButton from '../components/ShareButton';
 import FavButton from '../components/FavButton';
+import StartOrContinueButton from '../components/StartOrContinueButton';
 
 export default function ComidasDetalhes({ match: { params } }) {
   const { id } = params;
@@ -31,9 +32,7 @@ export default function ComidasDetalhes({ match: { params } }) {
     const firstIng = 9;
     const lastIng = 29;
     const list = Object.entries(mealDetail.meals[0]);
-    console.log(list);
     const onlyIngredients = list.slice(firstIng, lastIng);
-    console.log(onlyIngredients);
     const firstFilter = onlyIngredients.filter((curr) => curr[1] !== null);
     const test = firstFilter.filter((curr) => curr[1].length !== 0);
     const final = test.map((curr) => curr[1]);
@@ -44,14 +43,10 @@ export default function ComidasDetalhes({ match: { params } }) {
     const firstIng = 29;
     const lastIng = 49;
     const list = Object.entries(mealDetail.meals[0]);
-    console.log(list);
     const onlyQuantity = list.slice(firstIng, lastIng);
-    console.log(onlyQuantity);
     const firstFilter = onlyQuantity.filter((curr) => curr[1] !== null);
     const test = firstFilter.filter((curr) => curr[1].length !== 1);
-    console.log(test);
     const final = test.map((curr) => curr[1]);
-    console.log(final);
     setQuantityList(final);
   };
 
@@ -109,7 +104,7 @@ export default function ComidasDetalhes({ match: { params } }) {
             type="comida"
             area={ mealDetail.meals[0].strArea }
             category={ mealDetail.meals[0].strCategory }
-            alcoholicOrNot=""
+            alcohol=""
             name={ mealDetail.meals[0].strMeal }
             image={ mealDetail.meals[0].strMealThumb }
 
@@ -154,14 +149,15 @@ export default function ComidasDetalhes({ match: { params } }) {
             ))}
           </div>
           <Link to={ `/comidas/${id}/in-progress` }>
-            <button
-              className="recipeButton"
-              type="button"
-              data-testid="start-recipe-btn"
-            >
-              Iniciar Receita
-            </button>
+
+            <StartOrContinueButton
+              pageId={ id }
+              webPage="meal"
+              ingredientList={ ingredientList }
+            />
+
           </Link>
+
         </div>
       )}
 

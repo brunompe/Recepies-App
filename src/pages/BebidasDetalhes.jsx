@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import DisplayCard from '../components/DisplayCard';
 import ShareButton from '../components/ShareButton';
 import FavButton from '../components/FavButton';
+import StartOrContinueButton from '../components/StartOrContinueButton';
 
 export default function BebidasDetalhes({ match: { params } }) {
   const { id } = params;
@@ -20,9 +21,7 @@ export default function BebidasDetalhes({ match: { params } }) {
 
     const dataReco = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     const recoJson = await dataReco.json();
-    console.log(recoJson);
     const newJson = recoJson.meals.filter((_, index) => index < SIX);
-    console.log(newJson);
 
     await setRecomedation(newJson);
     await setDrinkDetail(Json);
@@ -101,7 +100,7 @@ export default function BebidasDetalhes({ match: { params } }) {
             area=""
             type="bebida"
             category={ drinkDetail.drinks[0].strCategory }
-            alcoholicOrNot={ drinkDetail.drinks[0].strAlcoholic }
+            alcohol={ drinkDetail.drinks[0].strAlcoholic }
             name={ drinkDetail.drinks[0].strDrink }
             image={ drinkDetail.drinks[0].strDrinkThumb }
           />
@@ -139,13 +138,14 @@ export default function BebidasDetalhes({ match: { params } }) {
             ))}
           </div>
           <Link to={ `/bebidas/${id}/in-progress` }>
-            <button
+            {/* <button
               className="recipeButton"
               type="button"
               data-testid="start-recipe-btn"
             >
               Iniciar Receita
-            </button>
+            </button> */}
+            <StartOrContinueButton pageId={ id } ingredientList={ ingredientList } />
           </Link>
         </div>
       )}
