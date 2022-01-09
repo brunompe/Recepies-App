@@ -9,10 +9,12 @@ export default function ReceitasFeitas() {
   const [drinksDone, setDrinksDone] = useState([]);
 
   const filterMealAndDrink = () => {
-    const onlyMeals = doneRecipes.filter((recipe) => recipe.type === 'comida');
-    const onlyDrinks = doneRecipes.filter((recipe) => recipe.type === 'bebida');
-    setMealsDone(onlyMeals);
-    setDrinksDone(onlyDrinks);
+    if (doneRecipes !== null) {
+      const onlyMeals = doneRecipes.filter((recipe) => recipe.type === 'comida');
+      const onlyDrinks = doneRecipes.filter((recipe) => recipe.type === 'bebida');
+      setMealsDone(onlyMeals);
+      setDrinksDone(onlyDrinks);
+    }
   };
 
   useEffect(() => {
@@ -55,9 +57,8 @@ export default function ReceitasFeitas() {
         Drinks
       </button>
 
-      { recipesToRender.map((recipe, index) => (
+      { doneRecipes !== null && recipesToRender.map((recipe, index) => (
         <div key={ index }>
-          {/* <Link to={ `${recipe.type}s/${recipe.id}` }> */}
           <CardReceitasFeitas
             key={ index }
             area={ recipe.area }
@@ -71,7 +72,6 @@ export default function ReceitasFeitas() {
             image={ recipe.image }
             alcoholicOrNot={ recipe.alcoholicOrNot }
           />
-          {/* </Link> */}
         </div>
       ))}
     </div>

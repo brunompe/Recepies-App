@@ -7,7 +7,12 @@ function DisplayCard({ nome, URL, index, id, webPage, dataTest }) {
     <Link to={ `/${webPage}/${id}` }>
       <div data-testid={ `${index}-recipe-card` }>
         <h1 data-testid={ dataTest }>{nome}</h1>
-        <img data-testid={ `${index}-card-img` } src={ URL } alt={ index } />
+        <img
+          className="imgSize"
+          data-testid={ `${index}-card-img` }
+          src={ URL }
+          alt={ index }
+        />
       </div>
     </Link>
   );
