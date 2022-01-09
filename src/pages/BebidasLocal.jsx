@@ -6,6 +6,7 @@ export default function BebidasLocal() {
   return (
     <div>
       <Header pageName="Explorar Origem" haveSearch />
+      <p>Not Found</p>
       <Footer />
     </div>
   );
