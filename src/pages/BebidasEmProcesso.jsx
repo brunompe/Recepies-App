@@ -135,13 +135,6 @@ export default function BebidasDetalhes({ match: { params } }) {
           </p>
 
           <ShareButton foodType="drink" pageId={ id } testId="share-btn" />
-
-          {/* <button
-            type="button"
-            data-testid="favorite-btn"
-          >
-            Favoritar
-          </button> */}
           <FavButton
             id={ drinkDetail.drinks[0].idDrink }
             area=""
