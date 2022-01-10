@@ -93,7 +93,7 @@ export default function BebidasDetalhes({ match: { params } }) {
             {drinkDetail.drinks[0].strInstructions}
           </p>
 
-          <ShareButton foodType="drink" pageId={ id } />
+          <ShareButton foodType="drink" pageId={ id } testId="share-btn" />
 
           <FavButton
             id={ drinkDetail.drinks[0].idDrink }
@@ -103,6 +103,7 @@ export default function BebidasDetalhes({ match: { params } }) {
             alcohol={ drinkDetail.drinks[0].strAlcoholic }
             name={ drinkDetail.drinks[0].strDrink }
             image={ drinkDetail.drinks[0].strDrinkThumb }
+            dataTest="favorite-btn"
           />
 
           <div>
@@ -138,13 +139,6 @@ export default function BebidasDetalhes({ match: { params } }) {
             ))}
           </div>
           <Link to={ `/bebidas/${id}/in-progress` }>
-            {/* <button
-              className="recipeButton"
-              type="button"
-              data-testid="start-recipe-btn"
-            >
-              Iniciar Receita
-            </button> */}
             <StartOrContinueButton pageId={ id } ingredientList={ ingredientList } />
           </Link>
         </div>

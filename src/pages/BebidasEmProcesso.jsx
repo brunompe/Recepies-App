@@ -66,6 +66,34 @@ export default function BebidasDetalhes({ match: { params } }) {
     fetchDetalhes();
   }, []);
 
+  const saveDoneRecipe = () => {
+    // função para pegar data pega em
+    // https://www.horadecodar.com.br/2021/04/03/como-pegar-a-data-atual-com-javascript/
+
+    const data = new Date();
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = data.getFullYear();
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    const mealObj = {
+      id: drinkDetail.drinks[0].idDrink,
+      type: 'bebida',
+      area: '',
+      category: drinkDetail.drinks[0].strCategory,
+      alcoholicOrNot: drinkDetail.drinks[0].strAlcoholic,
+      name: drinkDetail.drinks[0].strDrink,
+      image: drinkDetail.drinks[0].strDrinkThumb,
+      doneDate: `${dia}/${mes}/${ano}`,
+      tags: '',
+    };
+
+    if (doneRecipes !== null) {
+      localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, mealObj]));
+    } else {
+      localStorage.setItem('doneRecipes', JSON.stringify([mealObj]));
+    }
+  };
+
   return (
     <div>
       {render === true && (
@@ -106,14 +134,7 @@ export default function BebidasDetalhes({ match: { params } }) {
             {drinkDetail.drinks[0].strInstructions}
           </p>
 
-          <ShareButton foodType="drink" pageId={ id } />
-
-          {/* <button
-            type="button"
-            data-testid="favorite-btn"
-          >
-            Favoritar
-          </button> */}
+          <ShareButton foodType="drink" pageId={ id } testId="share-btn" />
           <FavButton
             id={ drinkDetail.drinks[0].idDrink }
             area=""
@@ -122,10 +143,12 @@ export default function BebidasDetalhes({ match: { params } }) {
             alcohol={ drinkDetail.drinks[0].strAlcoholic }
             name={ drinkDetail.drinks[0].strDrink }
             image={ drinkDetail.drinks[0].strDrinkThumb }
+            dataTest="favorite-btn"
           />
           <Link to="/receitas-feitas">
             <button
               className="recipeButton"
+              onClick={ saveDoneRecipe }
               type="button"
               data-testid="finish-recipe-btn"
               disabled={ disable }

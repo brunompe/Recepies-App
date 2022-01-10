@@ -69,6 +69,35 @@ export default function ComidasDetalhes({ match: { params } }) {
     }
   };
 
+  const saveDoneRecipe = () => {
+    // função para pegar data pega em
+    // https://www.horadecodar.com.br/2021/04/03/como-pegar-a-data-atual-com-javascript/
+
+    const data = new Date();
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = data.getFullYear();
+
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    const mealObj = {
+      id: mealDetail.meals[0].idMeal,
+      type: 'comida',
+      area: mealDetail.meals[0].strArea,
+      category: mealDetail.meals[0].strCategory,
+      alcoholOrNot: '',
+      name: mealDetail.meals[0].strMeal,
+      image: mealDetail.meals[0].strMealThumb,
+      doneDate: `${dia}/${mes}/${ano}`,
+      tags: mealDetail.meals[0].strTags,
+    };
+
+    if (doneRecipes !== null) {
+      localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, mealObj]));
+    } else {
+      localStorage.setItem('doneRecipes', JSON.stringify([mealObj]));
+    }
+  };
+
   return (
     <div>
       {render === true && (
@@ -110,14 +139,7 @@ export default function ComidasDetalhes({ match: { params } }) {
             {mealDetail.meals[0].strInstructions}
           </p>
 
-          <ShareButton pageId={ id } foodType="meal" />
-
-          {/* <button
-            type="button"
-            data-testid="favorite-btn"
-          >
-            Favoritar
-          </button> */}
+          <ShareButton pageId={ id } foodType="meal" testId="share-btn" />
           <FavButton
             id={ mealDetail.meals[0].idMeal }
             type="comida"
@@ -126,6 +148,7 @@ export default function ComidasDetalhes({ match: { params } }) {
             alcohol=""
             name={ mealDetail.meals[0].strMeal }
             image={ mealDetail.meals[0].strMealThumb }
+            dataTest="favorite-btn"
 
           />
           <Link to="/receitas-feitas">
@@ -134,6 +157,7 @@ export default function ComidasDetalhes({ match: { params } }) {
               type="button"
               data-testid="finish-recipe-btn"
               disabled={ disable }
+              onClick={ saveDoneRecipe }
             >
               Finalizar receita
             </button>

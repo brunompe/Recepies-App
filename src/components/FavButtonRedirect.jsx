@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
@@ -65,15 +66,18 @@ export default function FavButton({
 
   return (
     <div>
-      <button
-        className="favButton"
-        type="button"
-        data-testid={ dataTest }
-        src={ icon }
-        onClick={ favorite }
-      >
-        <img src={ icon } alt="heart" />
-      </button>
+      <Link to="/redirect">
+        <button
+          className="favButton"
+          type="button"
+          data-testid={ dataTest }
+          src={ icon }
+          onClick={ favorite }
+        >
+          <img src={ icon } alt="heart" />
+        </button>
+
+      </Link>
     </div>
   );
 }
