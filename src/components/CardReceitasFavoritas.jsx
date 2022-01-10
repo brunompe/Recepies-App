@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ShareButton from './ShareButton';
+import FavButtonRedirect from './FavButtonRedirect';
 
-export default function CardReceitasFeitas({
-  pageId, foodType, index, category, name, data, tags, image, alcoholicOrNot, area,
+export default function CardReceitasFavoritas({
+  pageId, foodType, index, category, name, data, image, alcoholicOrNot, area,
 }) {
-  // console.log(tags);
-  // const newTag = tags.split(',');
   return (
     <div>
       {foodType === 'comida' ? (
@@ -23,27 +22,22 @@ export default function CardReceitasFeitas({
           </Link>
           <p data-testid={ `${index}-horizontal-top-text` }>{`${area} - ${category}`}</p>
           <p data-testid={ `${index}-horizontal-done-date` }>{ data }</p>
-          <button
-            type="button"
-            data-testid={ `${index}-${tags[0]}-horizontal-tag` }
-          >
-            {tags[0]}
-
-          </button>
-          {tags.length > 1 && (
-            <button
-              type="button"
-              data-testid={ `${index}-${tags[1]}-horizontal-tag` }
-            >
-              {tags[1]}
-
-            </button>
-          )}
 
           <ShareButton
             pageId={ pageId }
             foodType="meal"
             testId={ `${index}-horizontal-share-btn` }
+          />
+
+          <FavButtonRedirect
+            id={ pageId }
+            type={ foodType }
+            area={ area }
+            category={ category }
+            alcohol={ alcoholicOrNot }
+            name={ name }
+            image={ image }
+            dataTest={ `${index}-horizontal-favorite-btn` }
           />
         </div>
       ) : (
@@ -65,6 +59,17 @@ export default function CardReceitasFeitas({
             foodType="drink"
             testId={ `${index}-horizontal-share-btn` }
           />
+
+          <FavButtonRedirect
+            id={ pageId }
+            type={ foodType }
+            area={ area }
+            category={ category }
+            alcohol={ alcoholicOrNot }
+            name={ name }
+            image={ image }
+            dataTest={ `${index}-horizontal-favorite-btn` }
+          />
         </div>
 
       )}
@@ -72,7 +77,7 @@ export default function CardReceitasFeitas({
   );
 }
 
-CardReceitasFeitas.propTypes = {
+CardReceitasFavoritas.propTypes = {
   alcoholicOrNot: PropTypes.string.isRequired,
   area: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
@@ -82,5 +87,4 @@ CardReceitasFeitas.propTypes = {
   index: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   pageId: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
 };

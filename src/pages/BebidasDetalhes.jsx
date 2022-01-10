@@ -103,6 +103,7 @@ export default function BebidasDetalhes({ match: { params } }) {
             alcohol={ drinkDetail.drinks[0].strAlcoholic }
             name={ drinkDetail.drinks[0].strDrink }
             image={ drinkDetail.drinks[0].strDrinkThumb }
+            dataTest="favorite-btn"
           />
 
           <div>

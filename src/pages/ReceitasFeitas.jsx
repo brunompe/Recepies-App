@@ -41,6 +41,7 @@ export default function ReceitasFeitas() {
       >
         All
       </button>
+
       <button
         onClick={ () => onButtonClick('meal') }
         type="button"

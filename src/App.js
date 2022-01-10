@@ -19,11 +19,13 @@ import ComidasDetalhes from './pages/ComidasDetalhes';
 import BebidasDetalhes from './pages/BebidasDetalhes';
 import ComidasEmProcesso from './pages/ComidasEmProcesso';
 import BebidasEmProcesso from './pages/BebidasEmProcesso';
+import RedirectPage from './pages/RedirectPage';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/redirect" component={ RedirectPage } />
         <Route exact path="/" component={ Login } />
         <Route exact path="/comidas" component={ Comidas } />
         <Route

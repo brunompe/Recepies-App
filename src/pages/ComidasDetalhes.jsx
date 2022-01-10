@@ -107,6 +107,7 @@ export default function ComidasDetalhes({ match: { params } }) {
             alcohol=""
             name={ mealDetail.meals[0].strMeal }
             image={ mealDetail.meals[0].strMealThumb }
+            dataTest="favorite-btn"
 
           />
 
