@@ -21,21 +21,24 @@
 }
 
 .recipeButton {
-  bottom: 0;
+  bottom: 10px;
   position: fixed;
+  /* margin-bottom: 10px; */
+  margin-left: 32%;
+  background-color: rgb(247, 127, 0);
+  padding: 8px;
+  color: white;
+  box-shadow:  -3px 3px 3px rgba(0,0,0,0.5);
+  border-radius: 10px;
 }
 
 .recepiesRisk {
   text-decoration: line-through;
 }
 
-.favButton {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-}
-
 .imgSize {
-  width: 200px;
+  width: 150px;
+  border-radius: 8px 0px 0px 8px;
 }
 
 /*

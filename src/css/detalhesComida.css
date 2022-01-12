@@ -1,0 +1,81 @@
+.details-main-img {
+  width: 100%;
+}
+
+.title-and-icons-div {
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-div {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  /* background-color: green; */
+}
+
+.icons-div {
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icons-div button {
+  margin-left: 10px;
+}
+
+.share-button-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapp-div {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(214, 205, 178);
+  width: 95%;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.wrapp-div li {
+  width: 90%;
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+
+.wrapp-div h3 {
+  margin-bottom: 10px;
+}
+
+.wrapp-div p {
+  text-align: justify;
+}
+
+.video-div {
+  /* background-color: green; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapp-div iframe {
+  margin-bottom: 10px;
+  margin-left: 8px;
+}
+
+.display-card-div {
+  display: flex;
+}
+
+.wrapp-div-checkbox {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapp-div-checkbox label {
+  margin: 0;
+  padding: 5px;
+}

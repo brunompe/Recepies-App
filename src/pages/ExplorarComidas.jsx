@@ -19,31 +19,37 @@ export default function ExplorarComidas() {
   return (
     <div>
       <Header pageName="Explorar Comidas" />
-      <Link to="/explorar/comidas/area">
-        <button
-          type="button"
-          data-testid="explore-by-area"
-        >
-          Por Local de Origem
-        </button>
-      </Link>
+      <div className="main-div-explorer-food">
+        <Link to="/explorar/comidas/area">
+          <button
+            className="explorer-btn-food"
+            type="button"
+            data-testid="explore-by-area"
+          >
+            Por Local de Origem
+          </button>
+        </Link>
 
-      <Link to="/explorar/comidas/ingredientes">
-        <button
-          type="button"
-          data-testid="explore-by-ingredient"
-        >
-          Por Ingredientes
-        </button>
-      </Link>
-      <Link to={ `/comidas/${foodId}` }>
-        <button
-          type="button"
-          data-testid="explore-surprise"
-        >
-          Me Surpreenda!
-        </button>
-      </Link>
+        <Link to="/explorar/comidas/ingredientes">
+          <button
+            className="explorer-btn-food"
+            type="button"
+            data-testid="explore-by-ingredient"
+          >
+            Por Ingredientes
+          </button>
+        </Link>
+        <Link to={ `/comidas/${foodId}` }>
+          <button
+            className="explorer-btn-food"
+            type="button"
+            data-testid="explore-surprise"
+          >
+            Me Surpreenda!
+          </button>
+        </Link>
+
+      </div>
       <Footer />
     </div>
   );

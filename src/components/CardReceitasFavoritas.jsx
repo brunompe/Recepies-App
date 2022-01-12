@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ShareButton from './ShareButton';
 import FavButtonRedirect from './FavButtonRedirect';
+import '../css/cardReceitasFeitas.css';
 
 export default function CardReceitasFavoritas({
   pageId, foodType, index, category, name, data, image, alcoholicOrNot, area,
@@ -10,7 +11,7 @@ export default function CardReceitasFavoritas({
   return (
     <div>
       {foodType === 'comida' ? (
-        <div>
+        <div className="main-div-done">
           <Link to={ `/comidas/${pageId}` }>
             <img
               className="imgSize"
@@ -18,30 +19,39 @@ export default function CardReceitasFavoritas({
               src={ image }
               alt="Recipe"
             />
-            <h3 data-testid={ `${index}-horizontal-name` }>{name}</h3>
           </Link>
-          <p data-testid={ `${index}-horizontal-top-text` }>{`${area} - ${category}`}</p>
-          <p data-testid={ `${index}-horizontal-done-date` }>{ data }</p>
+          <div>
+            <div className="info-div">
+              <h3 data-testid={ `${index}-horizontal-name` }>{name}</h3>
+              <p
+                data-testid={ `${index}-horizontal-top-text` }
+              >
+                {`${area} - ${category}`}
+              </p>
+              <p data-testid={ `${index}-horizontal-done-date` }>{ data }</p>
 
-          <ShareButton
-            pageId={ pageId }
-            foodType="meal"
-            testId={ `${index}-horizontal-share-btn` }
-          />
+              <ShareButton
+                pageId={ pageId }
+                foodType="meal"
+                testId={ `${index}-horizontal-share-btn` }
+              />
+              <FavButtonRedirect
+                id={ pageId }
+                type={ foodType }
+                area={ area }
+                category={ category }
+                alcohol={ alcoholicOrNot }
+                name={ name }
+                image={ image }
+                dataTest={ `${index}-horizontal-favorite-btn` }
+              />
 
-          <FavButtonRedirect
-            id={ pageId }
-            type={ foodType }
-            area={ area }
-            category={ category }
-            alcohol={ alcoholicOrNot }
-            name={ name }
-            image={ image }
-            dataTest={ `${index}-horizontal-favorite-btn` }
-          />
+            </div>
+
+          </div>
         </div>
       ) : (
-        <div>
+        <div className="main-div-done">
           <Link to={ `/bebidas/${pageId}` }>
             <img
               className="imgSize"
@@ -49,27 +59,30 @@ export default function CardReceitasFavoritas({
               src={ image }
               alt="Recipe"
             />
-            <h3 data-testid={ `${index}-horizontal-name` }>{name}</h3>
           </Link>
-          <p data-testid={ `${index}-horizontal-top-text` }>{alcoholicOrNot}</p>
-          <p data-testid={ `${index}-horizontal-done-date` }>{data}</p>
+          <div className="info-div">
+            <h3 data-testid={ `${index}-horizontal-name` }>{name}</h3>
+            <p data-testid={ `${index}-horizontal-top-text` }>{alcoholicOrNot}</p>
+            <p data-testid={ `${index}-horizontal-done-date` }>{data}</p>
 
-          <ShareButton
-            pageId={ pageId }
-            foodType="drink"
-            testId={ `${index}-horizontal-share-btn` }
-          />
-
-          <FavButtonRedirect
-            id={ pageId }
-            type={ foodType }
-            area={ area }
-            category={ category }
-            alcohol={ alcoholicOrNot }
-            name={ name }
-            image={ image }
-            dataTest={ `${index}-horizontal-favorite-btn` }
-          />
+            <div>
+              <ShareButton
+                pageId={ pageId }
+                foodType="drink"
+                testId={ `${index}-horizontal-share-btn` }
+              />
+              <FavButtonRedirect
+                id={ pageId }
+                type={ foodType }
+                area={ area }
+                category={ category }
+                alcohol={ alcoholicOrNot }
+                name={ name }
+                image={ image }
+                dataTest={ `${index}-horizontal-favorite-btn` }
+              />
+            </div>
+          </div>
         </div>
 
       )}

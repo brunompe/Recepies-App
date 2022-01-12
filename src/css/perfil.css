@@ -1,0 +1,32 @@
+.button-div-profile {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-div-profile button {
+  width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  box-shadow:  -5px 5px 5px rgba(0,0,0,0.5);
+  margin: 10px;
+  margin-left: 20px;
+  background-color: rgb(247, 127, 0);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 60px;
+}
+
+.email-div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

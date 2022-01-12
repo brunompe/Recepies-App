@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useContext, useState } from 'react';
 import RecipeContext from '../context/RecipeContext';
+import '../css/header.css';
 
 export default function BarraBuscar({ webPage, history }) {
   const { fetchData, setFetchData } = useContext(RecipeContext);
@@ -52,62 +53,67 @@ export default function BarraBuscar({ webPage, history }) {
   return (
     <div>
       <input
+        id="search-input"
         type="text"
         data-testid="search-input"
         onChange={ ({ target }) => {
           setSearchBar(target.value);
         } }
       />
+      <div className="filter-and-btn">
+        <div className="filter-only">
+          <label htmlFor="ingrediente">
+            Ingrediente
+            <input
+              id="ingrediente"
+              data-testid="ingredient-search-radio"
+              type="radio"
+              value="ingrediente"
+              name="radioHeader"
+              onClick={ ({ target }) => {
+                setRadioValue(target.value);
+              } }
+            />
+          </label>
 
-      <label htmlFor="ingrediente">
-        Ingrediente
-        <input
-          id="ingrediente"
-          data-testid="ingredient-search-radio"
-          type="radio"
-          value="ingrediente"
-          name="radioHeader"
-          onClick={ ({ target }) => {
-            setRadioValue(target.value);
-          } }
-        />
-      </label>
+          <label htmlFor="Nome">
+            Nome
+            <input
+              id="Nome"
+              value="nome"
+              data-testid="name-search-radio"
+              type="radio"
+              name="radioHeader"
+              onClick={ ({ target }) => {
+                setRadioValue(target.value);
+              } }
+            />
+          </label>
 
-      <label htmlFor="Nome">
-        Nome
-        <input
-          id="Nome"
-          value="nome"
-          data-testid="name-search-radio"
-          type="radio"
-          name="radioHeader"
-          onClick={ ({ target }) => {
-            setRadioValue(target.value);
-          } }
-        />
-      </label>
+          <label htmlFor="PrimeiraLetra">
+            Primeira letra
+            <input
+              data-testid="first-letter-search-radio"
+              id="PrimeiraLetra"
+              value="primeiraLetra"
+              type="radio"
+              name="radioHeader"
+              onClick={ ({ target }) => {
+                setRadioValue(target.value);
+              } }
+            />
+          </label>
 
-      <label htmlFor="PrimeiraLetra">
-        Primeira letra
-        <input
-          data-testid="first-letter-search-radio"
-          id="PrimeiraLetra"
-          value="primeiraLetra"
-          type="radio"
-          name="radioHeader"
-          onClick={ ({ target }) => {
-            setRadioValue(target.value);
-          } }
-        />
-      </label>
+        </div>
 
-      <button
-        data-testid="exec-search-btn"
-        type="button"
-        onClick={ () => onButtonClick(webPage) }
-      >
-        Buscar
-      </button>
+        <button
+          data-testid="exec-search-btn"
+          type="button"
+          onClick={ () => onButtonClick(webPage) }
+        >
+          Buscar
+        </button>
+      </div>
     </div>
   );
 }

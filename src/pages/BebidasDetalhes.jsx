@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import DisplayCard from '../components/DisplayCard';
+import DisplayCardDetalhes from '../components/DisplayCardDetalhes';
 import ShareButton from '../components/ShareButton';
 import FavButton from '../components/FavButton';
 import StartOrContinueButton from '../components/StartOrContinueButton';
+import '../css/detalhesComida.css';
 
 export default function BebidasDetalhes({ match: { params } }) {
   const { id } = params;
@@ -64,66 +65,73 @@ export default function BebidasDetalhes({ match: { params } }) {
       {render === true && (
         <div>
           <img
+            className="details-main-img"
             data-testid="recipe-photo"
             src={ drinkDetail.drinks[0].strDrinkThumb }
             alt="meal img"
           />
-          <h1 data-testid="recipe-title">{drinkDetail.drinks[0].strDrink}</h1>
-          <h3 data-testid="recipe-category">{ drinkDetail.drinks[0].strAlcoholic }</h3>
-          <ul>
-            {ingredientList.map((ingrediente, index) => (
-              <li
-                data-testid={ `${index}-ingredient-name-and-measure` }
-                key={ ingrediente }
+          <div className="title-and-icons-div">
+            <div className="title-div">
+              <h1 data-testid="recipe-title">{drinkDetail.drinks[0].strDrink}</h1>
+              <h4
+                data-testid="recipe-category"
               >
-                { ingrediente }
-                {' '}
-                -
-                {' '}
-                { quantityList[index] }
-                {' '}
+                { drinkDetail.drinks[0].strAlcoholic }
+              </h4>
+            </div>
 
-              </li>
-            ))}
+            <div className="icons-div">
+              <ShareButton foodType="drink" pageId={ id } testId="share-btn" />
+              <FavButton
+                id={ drinkDetail.drinks[0].idDrink }
+                area=""
+                type="bebida"
+                category={ drinkDetail.drinks[0].strCategory }
+                alcohol={ drinkDetail.drinks[0].strAlcoholic }
+                name={ drinkDetail.drinks[0].strDrink }
+                image={ drinkDetail.drinks[0].strDrinkThumb }
+                dataTest="favorite-btn"
+              />
 
-          </ul>
-          <p
-            data-testid="instructions"
+            </div>
+          </div>
+          <div
+            className="wrapp-div"
           >
-            {drinkDetail.drinks[0].strInstructions}
-          </p>
+            <h3>Ingredients</h3>
+            <ul>
+              {ingredientList.map((ingrediente, index) => (
+                <li
+                  data-testid={ `${index}-ingredient-name-and-measure` }
+                  key={ ingrediente }
+                >
+                  { ingrediente }
+                  {' '}
+                  -
+                  {' '}
+                  { quantityList[index] }
+                  {' '}
 
-          <ShareButton foodType="drink" pageId={ id } testId="share-btn" />
+                </li>
+              ))}
+            </ul>
 
-          <FavButton
-            id={ drinkDetail.drinks[0].idDrink }
-            area=""
-            type="bebida"
-            category={ drinkDetail.drinks[0].strCategory }
-            alcohol={ drinkDetail.drinks[0].strAlcoholic }
-            name={ drinkDetail.drinks[0].strDrink }
-            image={ drinkDetail.drinks[0].strDrinkThumb }
-            dataTest="favorite-btn"
-          />
-
-          <div>
-            <p>Recomendadas</p>
-            { recomendation.map((element, index) => (
-              <div key={ index } data-testid={ `${index}-recomendation-card` }>
-                { index < 2 ? (
-                  <DisplayCard
-                    webPage="bebidas"
-                    key={ element.strMeal }
-                    nome={ element.strMeal }
-                    URL={ element.strMealThumb }
-                    id={ element.idMeal }
-                    index={ index }
-                    dataTest={ `${index}-recomendation-title` }
-                  />
-
-                ) : (
-                  <div className="oculto">
-                    <DisplayCard
+          </div>
+          <div className="wrapp-div">
+            <h3>Instructions</h3>
+            <p
+              data-testid="instructions"
+            >
+              {drinkDetail.drinks[0].strInstructions}
+            </p>
+          </div>
+          <div className="wrapp-div">
+            <h3>Recomendadas</h3>
+            <div className="display-card-div">
+              { recomendation.map((element, index) => (
+                <div key={ index } data-testid={ `${index}-recomendation-card` }>
+                  { index < 2 ? (
+                    <DisplayCardDetalhes
                       webPage="bebidas"
                       key={ element.strMeal }
                       nome={ element.strMeal }
@@ -132,11 +140,24 @@ export default function BebidasDetalhes({ match: { params } }) {
                       index={ index }
                       dataTest={ `${index}-recomendation-title` }
                     />
-                  </div>
 
-                )}
-              </div>
-            ))}
+                  ) : (
+                    <div className="oculto">
+                      <DisplayCardDetalhes
+                        webPage="bebidas"
+                        key={ element.strMeal }
+                        nome={ element.strMeal }
+                        URL={ element.strMealThumb }
+                        id={ element.idMeal }
+                        index={ index }
+                        dataTest={ `${index}-recomendation-title` }
+                      />
+                    </div>
+
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
           <Link to={ `/bebidas/${id}/in-progress` }>
             <StartOrContinueButton pageId={ id } ingredientList={ ingredientList } />

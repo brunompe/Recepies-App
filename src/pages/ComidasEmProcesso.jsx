@@ -103,54 +103,67 @@ export default function ComidasDetalhes({ match: { params } }) {
       {render === true && (
         <div>
           <img
+            className="details-main-img"
             data-testid="recipe-photo"
             src={ mealDetail.meals[0].strMealThumb }
             alt="meal img"
           />
-          <h1 data-testid="recipe-title">{mealDetail.meals[0].strMeal}</h1>
+          <div className="title-and-icons-div">
+            <div className="title-div">
+              <h1 data-testid="recipe-title">{mealDetail.meals[0].strMeal}</h1>
+              <h4 data-testid="recipe-category">{mealDetail.meals[0].strCategory}</h4>
+            </div>
 
-          <h3 data-testid="recipe-category">{mealDetail.meals[0].strCategory}</h3>
-
-          {ingredientList.map((ingrediente, index) => (
-            <label
-              data-testid={ `${index}-ingredient-step` }
-              key={ index }
-              htmlFor={ index }
-            >
-              <input
-                id={ index }
-                type="checkbox"
-                key={ ingrediente }
-                onClick={ classChange }
-
+            <div className="icons-div">
+              <ShareButton pageId={ id } foodType="meal" testId="share-btn" />
+              <FavButton
+                id={ mealDetail.meals[0].idMeal }
+                type="comida"
+                area={ mealDetail.meals[0].strArea }
+                category={ mealDetail.meals[0].strCategory }
+                alcohol=""
+                name={ mealDetail.meals[0].strMeal }
+                image={ mealDetail.meals[0].strMealThumb }
+                dataTest="favorite-btn"
               />
-              { ingrediente }
-              {' '}
-              -
-              {' '}
-              { quantityList[index] }
-              {' '}
-            </label>
-          ))}
+            </div>
 
-          <p
-            data-testid="instructions"
-          >
-            {mealDetail.meals[0].strInstructions}
-          </p>
+          </div>
+          <div className="wrapp-div">
+            <h3>Ingredients</h3>
+            <div className="wrapp-div-checkbox">
+              {ingredientList.map((ingrediente, index) => (
+                <label
+                  data-testid={ `${index}-ingredient-step` }
+                  key={ index }
+                  htmlFor={ index }
+                >
+                  <input
+                    id={ index }
+                    type="checkbox"
+                    key={ ingrediente }
+                    onClick={ classChange }
+                  />
+                  { ingrediente }
+                  {' '}
+                  -
+                  {' '}
+                  { quantityList[index] }
+                  {' '}
+                </label>
+              ))}
 
-          <ShareButton pageId={ id } foodType="meal" testId="share-btn" />
-          <FavButton
-            id={ mealDetail.meals[0].idMeal }
-            type="comida"
-            area={ mealDetail.meals[0].strArea }
-            category={ mealDetail.meals[0].strCategory }
-            alcohol=""
-            name={ mealDetail.meals[0].strMeal }
-            image={ mealDetail.meals[0].strMealThumb }
-            dataTest="favorite-btn"
+            </div>
 
-          />
+          </div>
+          <div className="wrapp-div">
+            <h3>Instructions</h3>
+            <p
+              data-testid="instructions"
+            >
+              {mealDetail.meals[0].strInstructions}
+            </p>
+          </div>
           <Link to="/receitas-feitas">
             <button
               className="recipeButton"

@@ -1,0 +1,44 @@
+.main-div-explorer {
+  margin-top: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: space-around;
+}
+
+.main-div-explorer-food {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: space-around;
+}
+
+.explorer-btn {
+  width: 320px;
+  height: 134px;
+  box-shadow:  -5px 5px 5px rgba(0,0,0,0.5);
+  margin: 10px;
+  margin-left: 20px;
+  background-color: rgb(247, 127, 0);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 60px;
+}
+
+.explorer-btn-food {
+  width: 320px;
+  height: 134px;
+  box-shadow:  -5px 5px 5px rgba(0,0,0,0.5);
+  margin: 10px;
+  margin-left: 20px;
+  background-color: rgb(247, 127, 0);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  font-size: 2em;
+  font-weight: bold;
+}

@@ -1,0 +1,68 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    box-sizing: border-box;
+    margin: auto;
+  }
+  
+
+  .main-div-login {
+    padding-top: 110px;
+    background-image: url(../images/stock2.jpeg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    height: 640px;
+  }
+
+  .login-btn {
+  }
+  
+.login-box {
+  margin-top: 0;
+  border-radius: 20px;
+  background-color: white;
+  height: 400px;
+  width: 80%;
+  background-color: rgb(234, 226, 183);
+  box-shadow:  -8px 8px 8px rgba(0,0,0,0.7);
+}
+
+.login-box h1{
+  background-color: rgb(214, 40, 40);
+  color: white;
+  padding: 10px;
+  padding-left: 18px;
+  border-radius: 20px 20px 0 0;
+}
+
+.login-box input {
+  border-radius: 8px;
+  border: black 1px solid; 
+  z-index: 1;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin-top: 50px;
+  /* font-size: 1.3em; */
+  box-shadow:  -5px 5px 5px rgba(0,0,0,0.3);
+}
+
+.login-box button {
+    margin-top: 60px;
+    margin-left: 30px;
+    width: 80%;
+    background-color: rgb(252, 191, 73);
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    box-shadow:  -5px 5px 5px rgba(0,0,0,0.3);
+    /* display: flex;
+    align-items: center; */
+  }

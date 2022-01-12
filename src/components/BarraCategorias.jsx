@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from '../context/RecipeContext';
+import '../css/barraCategorias.css';
 
 export default function BarraCategorias({ webPage }) {
   const { categories, fetchData, setFetchData, initialValue } = useContext(RecipeContext);
   const [firstFive, setFirstFive] = useState(['carregando...']);
   const [toggleCategory, setToggleCategory] = useState('');
-  const arr = [];
+  const arr = ['All'];
   const FOUR = 4;
   const ZERO = 0;
 
@@ -23,7 +24,6 @@ export default function BarraCategorias({ webPage }) {
         arr.push(categoria);
       }
     }
-    arr.push('All');
     setFirstFive(arr);
   };
 
@@ -73,9 +73,10 @@ export default function BarraCategorias({ webPage }) {
   }, [categories]);
 
   return (
-    <div>
+    <div className="main-div-category">
       {firstFive.map((category) => (
         <button
+          className="category-btn"
           type="button"
           key={ category }
           data-testid={ `${category}-category-filter` }

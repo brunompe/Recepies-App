@@ -28,7 +28,10 @@ export default function ShareButton({ pageId, foodType, testId }) {
   }, []);
 
   return (
-    <div>
+    <div className="share-button-div">
+      { showSpan && (
+        <p> Link copiado! </p>
+      )}
       <button
         type="button"
         data-testid={ testId }
@@ -37,9 +40,6 @@ export default function ShareButton({ pageId, foodType, testId }) {
       >
         <img src={ shareIcon } alt="share icon" />
       </button>
-      { showSpan && (
-        <p> Link copiado! </p>
-      )}
     </div>
   );
 }

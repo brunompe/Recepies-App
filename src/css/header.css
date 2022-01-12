@@ -1,0 +1,42 @@
+.main-header {
+  display: flex;
+  /* justify-content: space-between; */
+  background-color: rgb(252, 191, 73);
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.main-header a {
+  margin-left: 5px;
+  margin-right: 45px;
+}
+
+#search-input {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.filter-and-btn {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.filter-and-btn button {
+  background-color: rgb(247, 127, 0);
+  padding: 8px;
+  color: white;
+  box-shadow:  -3px 3px 3px rgba(0,0,0,0.5);
+  border-radius: 10px;
+}
+
+.filter-only input {
+  margin-right: 5px;
+}
+
+.aux {
+  width: 30px;
+  height: 30px;
+}

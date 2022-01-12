@@ -33,30 +33,31 @@ export default function ReceitasFeitas() {
   return (
     <div>
       <Header pageName="Receitas Feitas" />
+      <div className="category-btn-done" >
+        <button
+          onClick={ () => onButtonClick() }
+          type="button"
+          data-testid="filter-by-all-btn"
+        >
+          All
+        </button>
 
-      <button
-        onClick={ () => onButtonClick() }
-        type="button"
-        data-testid="filter-by-all-btn"
-      >
-        All
-      </button>
+        <button
+          onClick={ () => onButtonClick('meal') }
+          type="button"
+          data-testid="filter-by-food-btn"
+        >
+          Food
+        </button>
 
-      <button
-        onClick={ () => onButtonClick('meal') }
-        type="button"
-        data-testid="filter-by-food-btn"
-      >
-        Food
-      </button>
-
-      <button
-        onClick={ () => onButtonClick('drink') }
-        type="button"
-        data-testid="filter-by-drink-btn"
-      >
-        Drinks
-      </button>
+        <button
+          onClick={ () => onButtonClick('drink') }
+          type="button"
+          data-testid="filter-by-drink-btn"
+        >
+          Drinks
+        </button>
+      </div>
 
       { doneRecipes !== null && recipesToRender.map((recipe, index) => (
         <div key={ index }>

@@ -99,52 +99,68 @@ export default function BebidasDetalhes({ match: { params } }) {
       {render === true && (
         <div>
           <img
+            className="details-main-img"
             data-testid="recipe-photo"
             src={ drinkDetail.drinks[0].strDrinkThumb }
             alt="meal img"
           />
-          <h1 data-testid="recipe-title">{drinkDetail.drinks[0].strDrink}</h1>
-          <h3 data-testid="recipe-category">{ drinkDetail.drinks[0].strAlcoholic }</h3>
-
-          {ingredientList.map((ingrediente, index) => (
-            <label
-              data-testid={ `${index}-ingredient-step` }
-              key={ index }
-              htmlFor={ index }
-            >
-              <input
-                id={ index }
-                type="checkbox"
-                key={ ingrediente }
-                onClick={ classChange }
-
+          <div className="title-and-icons-div">
+            <div className="title-div">
+              <h1 data-testid="recipe-title">{drinkDetail.drinks[0].strDrink}</h1>
+              <h4
+                data-testid="recipe-category"
+              >
+                { drinkDetail.drinks[0].strAlcoholic }
+              </h4>
+            </div>
+            <div className="icons-div">
+              <ShareButton foodType="drink" pageId={ id } testId="share-btn" />
+              <FavButton
+                id={ drinkDetail.drinks[0].idDrink }
+                area=""
+                type="bebida"
+                category={ drinkDetail.drinks[0].strCategory }
+                alcohol={ drinkDetail.drinks[0].strAlcoholic }
+                name={ drinkDetail.drinks[0].strDrink }
+                image={ drinkDetail.drinks[0].strDrinkThumb }
+                dataTest="favorite-btn"
               />
-              { ingrediente }
-              {' '}
-              -
-              {' '}
-              { quantityList[index] }
-              {' '}
-            </label>
-          ))}
+            </div>
+          </div>
+          <div className="wrapp-div">
+            <h3>Ingredients</h3>
+            <div className="wrapp-div-checkbox">
+              {ingredientList.map((ingrediente, index) => (
+                <label
+                  data-testid={ `${index}-ingredient-step` }
+                  key={ index }
+                  htmlFor={ index }
+                >
+                  <input
+                    id={ index }
+                    type="checkbox"
+                    key={ ingrediente }
+                    onClick={ classChange }
+                  />
+                  { ingrediente }
+                  {' '}
+                  { quantityList[index] }
+                  {' '}
+                </label>
+              ))}
+            </div>
 
-          <p
-            data-testid="instructions"
-          >
-            {drinkDetail.drinks[0].strInstructions}
-          </p>
+          </div>
+          <div className="wrapp-div">
+            <h3>Instructions</h3>
+            <p
+              data-testid="instructions"
+            >
+              {drinkDetail.drinks[0].strInstructions}
+            </p>
 
-          <ShareButton foodType="drink" pageId={ id } testId="share-btn" />
-          <FavButton
-            id={ drinkDetail.drinks[0].idDrink }
-            area=""
-            type="bebida"
-            category={ drinkDetail.drinks[0].strCategory }
-            alcohol={ drinkDetail.drinks[0].strAlcoholic }
-            name={ drinkDetail.drinks[0].strDrink }
-            image={ drinkDetail.drinks[0].strDrinkThumb }
-            dataTest="favorite-btn"
-          />
+          </div>
+
           <Link to="/receitas-feitas">
             <button
               className="recipeButton"

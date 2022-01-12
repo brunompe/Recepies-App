@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import IngredientCard from '../components/IngredientCard';
 import RecipeContext from '../context/RecipeContext';
+import '../css/ingredients.css';
 
 export default function ComidasIngredientes({ history }) {
   const { setFetchData } = useContext(RecipeContext);
@@ -37,7 +38,7 @@ export default function ComidasIngredientes({ history }) {
   };
 
   return (
-    <div>
+    <div className="main-div-ingredients">
       <Header pageName="Explorar Ingredientes" />
       { render === true && (
         ingredientsList.map((name, index) => (

@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import RecipeContext from '../context/RecipeContext';
 import DisplayCard from '../components/DisplayCard';
 import BarraCategorias from '../components/BarraCategorias';
+import '../css/mainPage.css';
 
 export default function Comidas({ history }) {
   const { fetchData } = useContext(RecipeContext);

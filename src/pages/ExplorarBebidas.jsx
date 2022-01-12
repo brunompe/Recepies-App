@@ -19,23 +19,27 @@ export default function ExplorarBebidas() {
   return (
     <div>
       <Header pageName="Explorar Bebidas" />
-      <Link to="/explorar/bebidas/ingredientes">
-        <button
-          type="button"
-          data-testid="explore-by-ingredient"
-        >
-          Por Ingredientes
-        </button>
-      </Link>
-      <Link to={ `/bebidas/${foodId}` }>
-        <button
-          type="button"
-          data-testid="explore-surprise"
-        >
-          Me Surpreenda!
-        </button>
-      </Link>
-      <Footer />
+      <div className="main-div-explorer">
+        <Link to="/explorar/bebidas/ingredientes">
+          <button
+            className="explorer-btn"
+            type="button"
+            data-testid="explore-by-ingredient"
+          >
+            Por Ingredientes
+          </button>
+        </Link>
+        <Link to={ `/bebidas/${foodId}` }>
+          <button
+            className="explorer-btn"
+            type="button"
+            data-testid="explore-surprise"
+          >
+            Me Surpreenda!
+          </button>
+        </Link>
+        <Footer />
+      </div>
     </div>
   );
 }

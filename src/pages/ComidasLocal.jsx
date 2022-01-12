@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import '../css/comidasLocal.css';
 
 export default function ComidasLocal() {
   const [areas, setAreas] = useState([]);
@@ -50,8 +51,9 @@ export default function ComidasLocal() {
   }, [areas, mealList]);
 
   return (
-    <div>
+    <div className="wrap-div-local">
       <Header pageName="Explorar Origem" haveSearch />
+      <h3>Selecione o local de origem</h3>
       {render && (
         <select
           data-testid="explore-by-area-dropdown"
@@ -70,23 +72,23 @@ export default function ComidasLocal() {
           ))}
         </select>
       )}
-      {render && (
-        mealList.map((meal, index) => (
-          <Link key={ index } to={ `/comidas/${meal.idMeal}` }>
-
-            <div data-testid={ `${index}-recipe-card` }>
-              <h3 data-testid={ `${index}-card-name` }>{ meal.strMeal }</h3>
-              <img
-                data-testid={ `${index}-card-img` }
-                className="imgSize"
-                src={ meal.strMealThumb }
-                alt="Food"
-              />
-            </div>
-
-          </Link>
-        ))
-      )}
+      <div className="main-div-local">
+        {render && (
+          mealList.map((meal, index) => (
+            <Link key={ index } to={ `/comidas/${meal.idMeal}` }>
+              <div className="main-div-local-card" data-testid={ `${index}-recipe-card` }>
+                <img
+                  data-testid={ `${index}-card-img` }
+                  className="main-div-local-card-image"
+                  src={ meal.strMealThumb }
+                  alt="Food"
+                />
+                <h2 data-testid={ `${index}-card-name` }>{ meal.strMeal }</h2>
+              </div>
+            </Link>
+          ))
+        )}
+      </div>
       <Footer />
     </div>
   );

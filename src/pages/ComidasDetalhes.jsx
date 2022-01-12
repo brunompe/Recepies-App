@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import DisplayCard from '../components/DisplayCard';
+import DisplayCardDetalhes from '../components/DisplayCardDetalhes';
 import ShareButton from '../components/ShareButton';
 import FavButton from '../components/FavButton';
 import StartOrContinueButton from '../components/StartOrContinueButton';
+import '../css/detalhesComida.css';
 
 export default function ComidasDetalhes({ match: { params } }) {
   const { id } = params;
@@ -66,75 +67,78 @@ export default function ComidasDetalhes({ match: { params } }) {
       {render === true && (
         <div>
           <img
+            className="details-main-img"
             data-testid="recipe-photo"
             src={ mealDetail.meals[0].strMealThumb }
             alt="meal img"
           />
-          <h1 data-testid="recipe-title">{mealDetail.meals[0].strMeal}</h1>
+          <div className="title-and-icons-div">
+            <div className="title-div">
+              <h1 data-testid="recipe-title">{mealDetail.meals[0].strMeal}</h1>
+              <h4 data-testid="recipe-category">{mealDetail.meals[0].strCategory}</h4>
+            </div>
+            <div className="icons-div">
+              <ShareButton foodType="meal" pageId={ id } testId="share-btn" />
+              <FavButton
+                id={ mealDetail.meals[0].idMeal }
+                type="comida"
+                area={ mealDetail.meals[0].strArea }
+                category={ mealDetail.meals[0].strCategory }
+                alcohol=""
+                name={ mealDetail.meals[0].strMeal }
+                image={ mealDetail.meals[0].strMealThumb }
+                dataTest="favorite-btn"
+              />
+            </div>
+          </div>
 
-          <h3 data-testid="recipe-category">{mealDetail.meals[0].strCategory}</h3>
+          <div className="wrapp-div">
+            <h3>Ingredients</h3>
+            <ul>
+              {ingredientList.map((ingrediente, index) => (
+                <li
+                  data-testid={ `${index}-ingredient-name-and-measure` }
+                  key={ ingrediente }
+                >
+                  { ingrediente }
+                  {' '}
+                  -
+                  {' '}
+                  { quantityList[index] }
+                  {' '}
 
-          <ul>
-            {ingredientList.map((ingrediente, index) => (
-              <li
-                data-testid={ `${index}-ingredient-name-and-measure` }
-                key={ ingrediente }
-              >
-                { ingrediente }
-                {' '}
-                -
-                {' '}
-                { quantityList[index] }
-                {' '}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="wrapp-div">
+            <h3>Instructions</h3>
+            <p
+              data-testid="instructions"
+            >
+              {mealDetail.meals[0].strInstructions}
+            </p>
 
-              </li>
-            ))}
+          </div>
 
-          </ul>
-          <p
-            data-testid="instructions"
+          <div
+            className="wrapp-div"
           >
-            {mealDetail.meals[0].strInstructions}
-          </p>
+            <h3>Video</h3>
+            <iframe
+              data-testid="video"
+              title={ mealDetail.meals[0].strYoutube }
+              src={ mealDetail.meals[0].strYoutube }
+            />
+          </div>
 
-          <ShareButton foodType="meal" pageId={ id } testId="share-btn" />
-
-          <FavButton
-            id={ mealDetail.meals[0].idMeal }
-            type="comida"
-            area={ mealDetail.meals[0].strArea }
-            category={ mealDetail.meals[0].strCategory }
-            alcohol=""
-            name={ mealDetail.meals[0].strMeal }
-            image={ mealDetail.meals[0].strMealThumb }
-            dataTest="favorite-btn"
-
-          />
-
-          <iframe
-            data-testid="video"
-            title={ mealDetail.meals[0].strYoutube }
-            src={ mealDetail.meals[0].strYoutube }
-          />
-
-          <div>
-            <p>Recomendadas</p>
-            { recomendation.map((element, index) => (
-              <div key={ index } data-testid={ `${index}-recomendation-card` }>
-                { index < 2 ? (
-                  <DisplayCard
-                    webPage="comidas"
-                    key={ element.strDrink }
-                    nome={ element.strDrink }
-                    URL={ element.strDrinkThumb }
-                    id={ element.idDrink }
-                    index={ index }
-                    dataTest={ `${index}-recomendation-title` }
-                  />
-
-                ) : (
-                  <div className="oculto">
-                    <DisplayCard
+          <div className="wrapp-div">
+            <h3>Recomendadas</h3>
+            <div className="display-card-div">
+              { recomendation.map((element, index) => (
+                <div key={ index } data-testid={ `${index}-recomendation-card` }>
+                  { index < 2 ? (
+                    <DisplayCardDetalhes
                       webPage="comidas"
                       key={ element.strDrink }
                       nome={ element.strDrink }
@@ -143,11 +147,24 @@ export default function ComidasDetalhes({ match: { params } }) {
                       index={ index }
                       dataTest={ `${index}-recomendation-title` }
                     />
-                  </div>
 
-                )}
-              </div>
-            ))}
+                  ) : (
+                    <div className="oculto">
+                      <DisplayCardDetalhes
+                        webPage="comidas"
+                        key={ element.strDrink }
+                        nome={ element.strDrink }
+                        URL={ element.strDrinkThumb }
+                        id={ element.idDrink }
+                        index={ index }
+                        dataTest={ `${index}-recomendation-title` }
+                      />
+                    </div>
+
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
           <Link to={ `/comidas/${id}/in-progress` }>
 
